@@ -6,7 +6,7 @@ terraform {
 provider "azurerm" {
   features {
   }
-  subscription_id = "06863855-2918-41b9-9f3c-ce4f1565c2e8"
+              subscription_id = "06863855-2918-41b9-9f3c-ce4f1565c2e8"
 }
 
 resource "random_integer" "ri" {
