@@ -3,7 +3,6 @@ name: 'Terraform Plan and Apply'
 on:
   push:
     branches: [ "main" ]
-  pull_request:
   workflow_dispatch:
 
 env:
@@ -40,29 +39,29 @@ jobs:
         name: tfplan
         path: tfplan
 
-  terraform_apply:
-    needs: terraform_plan
-    runs-on: ubuntu-latest
+  # terraform_apply:
+  #   needs: terraform_plan
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout the repository
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout the repository
+  #     uses: actions/checkout@v4
 
-    - name: Login to Azure via Azure CLI
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+  #   - name: Login to Azure via Azure CLI
+  #     uses: azure/login@v1
+  #     with:
+  #       creds: ${{ secrets.AZURE_CREDENTIALS }}
     
-    - name: Install Terraform
-      uses: hashicorp/setup-terraform@v4
+  #   - name: Install Terraform
+  #     uses: hashicorp/setup-terraform@v4
 
-    - name: Terraform Init
-      run: terraform init
+  #   - name: Terraform Init
+  #     run: terraform init
 
-    - name: Download Terraform Plan artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: tfplan
+  #   - name: Download Terraform Plan artifact
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: tfplan
 
-    - name: Terraform Apply
-      run: terraform apply -auto-approve tfplan
+  #   - name: Terraform Apply
+  #     run: terraform apply -auto-approve tfplan
